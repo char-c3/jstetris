@@ -118,7 +118,7 @@ var field = {
     this.currentMino.seq = newSeq;
   },
   delete: function() {
-    var line = 20;
+    var line = height;
     while(line) {
       // 非0になるには、一つでも0のマスがあってはいけない
       if (this.blocks[line].reduce(function(a, b) { return a * b; })) {
