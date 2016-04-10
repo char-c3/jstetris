@@ -207,7 +207,6 @@ function setup() {
 
   ctx = canvas.getContext("2d");
   field.setup();
-  field.dump();
   return true;
 }
 
@@ -222,23 +221,18 @@ function draw() {
 
 document.addEventListener("keydown", function(e) {
   if (e.keyIdentifier === "Down") {
-    console.log(e.keyIdentifier);
     field.down(false);
   }
   if (e.keyIdentifier === "Left") {
-    console.log(e.keyIdentifier);
     field.left();
   }
   if (e.keyIdentifier === "Right") {
-    console.log(e.keyIdentifier);
     field.right();
   }
   if (e.code === "Space") {
-    console.log(e.code);
     field.autoDown();
   }
   if (e.code === "KeyZ") {
-    console.log(e.code);
     field.spin();
   }
 });
