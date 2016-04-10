@@ -118,7 +118,7 @@ var field = {
     this.currentMino.seq = newSeq;
   },
   delete: function() {
-    var line = height;
+    var line = this.height;
     while(line) {
       // 非0になるには、一つでも0のマスがあってはいけない
       if (this.blocks[line].reduce(function(a, b) { return a * b; })) {
@@ -197,7 +197,10 @@ var field = {
 var canvas;
 var ctx;
 function setup() {
-  canvas = document.getElementById("main-canvas");
+  canvas = document.createElement("canvas");
+  canvas.width = BLOCK_SIZE * (field.width + 2);
+  canvas.height = BLOCK_SIZE * (field.height + 2);
+  document.body.appendChild(canvas);
   if (!canvas || !canvas.getContext) {
     return false;
   }
