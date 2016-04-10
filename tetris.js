@@ -136,6 +136,15 @@ var field = {
       }
     }
   },
+  isGameOver: function(mino) {
+      for (var i = 0, len = mino.seq.length; i < len; i++) {
+        var x = mino.x + mino.seq[i][0], y = mino.y + mino.seq[i][1];
+        if (this.blocks[y][x] !== 0) {
+          return true;
+        }
+      }
+      return false;
+  },
   setup: function() {
     this.blocks = [];
     for (var y = 0; y <= this.height + 1; y++) {
@@ -156,14 +165,16 @@ var field = {
       var next = this.generateMino();
 
       // おくことができなかったらゲームオーバー
-      var mino = next;
-      for (var i = 0, len = mino.seq.length; i < len; i++) {
-        var x = mino.x + mino.seq[i][0], y = mino.y + mino.seq[i][1];
-        if (this.blocks[y][x] !== 0) {
-          return;
+      if (this.isGameOver(next)) {
+        for (var y = 1; y <= this.height; y++) {
+          for (var x = 1; x <= this.width; x++) {
+            if (this.blocks[y][x]) {
+              this.blocks[y][x] = 1;
+            }
+          }
         }
-      }
-
+        return;
+      };
       this.currentMino = next;
     }
 
